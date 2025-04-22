@@ -9,7 +9,7 @@ test.describe("[UI] Login", () => {
     await page.locator("#emailinput").fill("test@gmail.com");
     await page.locator("#passwordinput").fill("12345678");
     await page.getByRole("button", { name: "Login" }).click();
-    await page.waitForSelector(".spinner-border", { state: "detached" });
+    await expect(page.locator(".spinner-border")).toHaveCount(0);
     await expect(page.locator("a.dropdown-toggle >> strong")).toHaveText("Anatoly");
     const sidebar = page.locator("#sidebar");
     await expect(sidebar).toHaveScreenshot("sidebar-after-login.png");
