@@ -40,7 +40,7 @@ test.describe('[UI] Demo Shopping Cart – E2E', () => {
 
     await expect(page.locator('#badge-number')).toHaveText(String(selectedProducts.length));
     await page.getByRole('button', { name: 'Shopping Cart' }).click();
-    await expect(getTotalPrice(page)).resolves.toBe(initialTotal);
+    await expect(await getTotalPrice(page)).toBe(initialTotal);
 
     const finalPrice = await applyAllPromocodes(initialTotal, page);
     await expect(getTotalPrice(page)).resolves.toBe(finalPrice);
